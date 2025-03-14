@@ -72,4 +72,12 @@ def main(data_inicio,data_fim):
             print(f"Nenhum dado salvo para {data_inicio} - {data_fim}")
 
 if __name__ == '__main__':
-    main()
+    from datetime import datetime
+    from dateutil.relativedelta import relativedelta
+    import os
+
+    # Pegando as datas do ambiente ou usando valores padrão
+    data_fim = os.getenv('DATA_FIM', datetime.today().strftime('%d/%m/%Y'))
+    data_inicio = os.getenv('DATA_INICIO', (datetime.today() - relativedelta(months=1)).strftime('%d/%m/%Y'))
+
+    main(data_inicio, data_fim)
